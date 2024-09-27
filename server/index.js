@@ -1,14 +1,22 @@
 import express from 'express'
+import { connectDB } from './config/db.js'
 const app = express()
 const port = 3000
+
+
+connectDB();
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-console.log('hello');
-console.log('hello2');
-console.log('hello3');
+app.get('/test/:id',(req,res)=>{
+    const {id}= req.params;
+    console.log(id);
+    res.json(' api accessed')
+})
 
 
 app.listen(port, () => {
