@@ -12,7 +12,6 @@ export const authUser = (req,res,next)=>{
             return res.status(401).json({message:'user not autherised'}) 
         }
         
-        console.log(tokenVerified,'====token verified');
         req.user=tokenVerified
         
         next()
