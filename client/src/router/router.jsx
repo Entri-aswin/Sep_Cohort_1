@@ -6,6 +6,7 @@ import { About } from "../pages/user/About";
 import { Contact } from "../pages/user/Contact";
 import { Course } from "../pages/user/Course";
 import { CourseDetails } from "../pages/user/CourseDetails";
+import { LoginPage } from "../pages/shared/LoginPage";
 
 export const router = createBrowserRouter([
     {
@@ -13,6 +14,15 @@ export const router = createBrowserRouter([
         element: <UserLayout />,
         errorElement: <ErrorPage />,
         children: [
+            {
+                path: "signup",
+                element: <h2>Sign-up page</h2>
+            },
+
+            {
+                path: "login",
+                element :<LoginPage />
+            },
 
             {
                 path: "",
@@ -34,7 +44,6 @@ export const router = createBrowserRouter([
                 path: "course-details/:id",
                 element: <CourseDetails />,
             },
-            
         ],
     },
 ]);

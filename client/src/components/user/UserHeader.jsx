@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { CircleUser } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";    
 import { DarkMode } from "../shared/DarkMode";
 
-export const Header = () => {
-
-    const navigate =useNavigate()
-
+export const UserHeader = () => {
     return (
         <div className="flex justify-between items-center w-full px-20  h-24 shadow-2xl  ">
             <Link to={"/"}>
@@ -17,9 +16,14 @@ export const Header = () => {
                 <Link to={"/course"}>Course</Link>
             </nav>
 
-            <div className="flex items-center gap-10">
-                <DarkMode/>
-                <button onClick={()=>navigate('/signup')} className="btn btn-primary">Join us</button>
+            <div className="flex gap-14 items-center ">
+                <DarkMode />
+                <Link to={'/user/cart'}>
+                    <ShoppingBag />
+                </Link>
+                <Link to={"/user/profile"}>
+                    <CircleUser />
+                </Link>
             </div>
         </div>
     );
