@@ -11,42 +11,35 @@ export const LoginPage = ({ role = "user" }) => {
 
     const user = {
         role: "user",
-        login_api: "/user/login",
+        login_api: "/user/log-in",
         profile_route: "/user/profile",
         signup_route: "/signup",
     };
 
     if (role === "mentor") {
         user.role = "mentor";
-        (user.login_api = "/mentor/login"), (user.profile_route = "/mentor/profile"), (user.signup_route = "/mentor/signup");
-    }
+        user.login_api = "/mentor/log-in";
+        user.profile_route = "/mentor/profile";
+        user.signup_route = "/mentor/signup";
+    }   
 
     // console.log(user, "=====user");
 
-    
     const onSubmit = async (data) => {
-        console.log("data====", data);
-
-        const response = await axiosInstance({
-            method:"POST",
-            url:'/user/log-in',
-            data
-        })
-
-        console.log(response,'======response');
-        
-
-
-
-        // try {
-        //     const response = await axiosInstance({ method: "POST", url: user.login_api, data });
-        //     console.log(response, "====response");
-        //     toast.success("Log-in success");
-        //     navigate(user.profile_route);
-        // } catch (error) {
-        //     toast.error("Log-in failed");
-        //     console.log(error);
-        // }
+        try {
+            const response = await axiosInstance({
+                method: "POST",
+                url: user.login_api,
+                data,
+            });
+            // const response = await axiosInstance({ method: "POST", url: user.login_api, data });
+            console.log(response, "====response");
+            toast.success("Log-in success");
+            navigate(user.profile_route);
+        } catch (error) {
+            toast.error("Log-in failed");
+            console.log(error);
+        }
     };
 
     return (
