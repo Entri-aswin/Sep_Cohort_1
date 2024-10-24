@@ -1,6 +1,6 @@
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 import { User } from "../models/userModel.js";
-import { generateToken } from '../utils/token.js';
+import { generateToken } from "../utils/token.js";
 
 export const userSignup = async (req, res, next) => {
     try {
@@ -27,7 +27,7 @@ export const userSignup = async (req, res, next) => {
         res.json({ success: true, message: "user created successfully" });
     } catch (error) {
         console.log(error);
-    res.status(error.statusCode || 500).json(error.message || 'Internal server error')        
+        res.status(error.statusCode || 500).json(error.message || "Internal server error");
     }
 };
 
@@ -54,41 +54,37 @@ export const userLogin = async (req, res, next) => {
         res.json({ success: true, message: "user login successfull" });
     } catch (error) {
         console.log(error);
-        res.status(error.statusCode || 500).json(error.message || 'Internal server error')
+        res.status(error.statusCode || 500).json(error.message || "Internal server error");
     }
 };
 
-
 export const userProfile = async (req, res, next) => {
     try {
+        const { user } = req;
 
-        const {user}=req
+        const userData = await User.findById(user.id).select("-password");
 
-        const userData = await User.findById(user.id).select('-password')
-
-        res.json({ success: true, message: "user profile fetched", userData });
+        res.json({ success: true, message: "user profile fetched", data: userData });
     } catch (error) {
         console.log(error);
-        res.status(error.statusCode || 500).json(error.message || 'Internal server error')
+        res.status(error.statusCode || 500).json(error.message || "Internal server error");
     }
 };
 export const userLogout = async (req, res, next) => {
     try {
-
-        res.clearCookie('token')
+        res.clearCookie("token");
         res.json({ success: true, message: "user logged out" });
     } catch (error) {
         console.log(error);
-        res.status(error.statusCode || 500).json(error.message || 'Internal server error')
+        res.status(error.statusCode || 500).json(error.message || "Internal server error");
     }
 };
 
 export const checkUser = async (req, res, next) => {
     try {
-
         res.json({ success: true, message: "autherized user" });
     } catch (error) {
         console.log(error);
-        res.status(error.statusCode || 500).json(error.message || 'Internal server error')
+        res.status(error.statusCode || 500).json(error.message || "Internal server error");
     }
 };

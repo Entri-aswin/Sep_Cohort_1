@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance";
 import { CourseCard } from "../../components/user/Cards";
+import { useFetch } from "../../hooks/useFetch";
+import { CoursePageSkelton } from "../../components/mentor/Skelton";
 
 export const Course = () => {
-    const [courses, setCourses] = useState([]);
+    const [courses, loading,error] = useFetch("/course/all-courses");
 
-    const fetchCourses = async () => {
-        try {
-            const response = await axiosInstance({
-                method: "GET",
-                url: "/course/all-courses",
-            });
-            setCourses(response?.data?.data);
-            console.log("response===", response);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    useEffect(() => {
-        fetchCourses();
-    }, []);
-
-    return <div>
-
-        {courses.map((value,index)=>(
-            <CourseCard course={value} key={value._id}  />
-        ))}
-
-    </div>;
+    {
+        return loading ? (
+            <CoursePageSkelton />
+        ) : (
+            <div>
+                <div className="grid gap-y-20 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 ">
+                    {courses.map((value) => (
+                        <CourseCard course={value} key={value._id} />
+                    ))}
+                </div>
+            </div>
+        );
+    }
 };

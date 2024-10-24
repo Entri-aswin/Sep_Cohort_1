@@ -18,3 +18,20 @@ export const CourseCard = ({ course }) => {
         </div>
     );
 };
+
+export const CartCards = ({ item, handleRemove }) => {
+
+
+    return (
+        <div className="flex w-full h-32 items-center gap-20 bg-base-300 mb-10 rounded-md ">
+            <img src={item?.courseId?.image} alt="cart-item" className="w-24 h-20" />
+
+            <div>
+                <h2>{item?.courseId?.title} </h2>
+                <h3>{item?.courseId?.price} </h3>
+            </div>
+
+            <button className="btn btn-secondary" onClick={()=>handleRemove(item?._id)}>Remove</button>
+        </div>
+    );
+};

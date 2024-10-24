@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export const DarkMode = () => {
     
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     document.querySelector("html").setAttribute("data-theme", isDarkMode ? "light" : "dark");
 

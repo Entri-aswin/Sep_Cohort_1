@@ -8,6 +8,8 @@ import { Course } from "../pages/user/Course";
 import { CourseDetails } from "../pages/user/CourseDetails";
 import { LoginPage } from "../pages/shared/LoginPage";
 import { ProtectRoute } from "./ProtectRoute";
+import { Profile } from "../pages/user/Profile";
+import { Cart } from "../pages/user/Cart";
 
 
 
@@ -53,11 +55,11 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "profile",
-                        element: <h2>user profile </h2>,
+                        element: <Profile/>,
                     },
                     {
                         path: "cart",
-                        element: <h2>user cart </h2>,
+                        element: <Cart/> ,
                     },
                     {
                         path: "wishlist",

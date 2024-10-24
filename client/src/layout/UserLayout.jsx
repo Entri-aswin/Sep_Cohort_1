@@ -33,7 +33,7 @@ export const UserLayout = () => {
         <div className="">
             {userAutherized ? <UserHeader /> : <Header />}
 
-            <div className="min-h-96">
+            <div className="min-h-96 px-24 py-14">
                 <Outlet />
             </div>
             <Footer />

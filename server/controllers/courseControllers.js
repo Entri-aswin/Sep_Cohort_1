@@ -16,6 +16,7 @@ export const findAllCourses = async (req, res, next) => {
 export const fetchCourseDetails = async (req, res, next) => {
     try {
         const { courseId } = req.params;
+        
 
         const courseDetails = await Course.findOne({ _id: courseId });
 
