@@ -9,8 +9,9 @@ const port = 3000;
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin:["http://localhost:5173"],
-    credentials:true
+    origin:["http://localhost:5173",'https://sep-batch-learning-app-frontend.vercel'],
+    credentials:true,
+    methods:['GET',"POST","PUT","DELETE"]
 }));
 app.use(cookieParser());
 
