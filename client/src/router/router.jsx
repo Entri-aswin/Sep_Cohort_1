@@ -10,6 +10,7 @@ import { LoginPage } from "../pages/shared/LoginPage";
 import { ProtectRoute } from "./ProtectRoute";
 import { Profile } from "../pages/user/Profile";
 import { Cart } from "../pages/user/Cart";
+import { SignupPage } from "../pages/shared/SignupPage";
 
 
 
@@ -21,7 +22,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "signup",
-                element: <h2>Sign-up page</h2>,
+                element: <SignupPage/> ,
             },
 
             {
