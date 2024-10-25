@@ -19,7 +19,7 @@ app.use(cookieParser());
 connectDB();
 
 app.get("/", (req, res, next) => {
-    res.json({ message: "hello world" });
+    res.json( "hello world" );
 });
 
 app.use("/api", apiRouter);
