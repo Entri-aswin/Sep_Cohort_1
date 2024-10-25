@@ -15,6 +15,7 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
+
 connectDB();
 
 app.get("/", (req, res, next) => {
