@@ -6,8 +6,12 @@ export const useFetch = (url) => {
     const [isLoading, setIsloading] = useState(true);
     const [error, setError] = useState("");
 
+    console.log('============= custom hook running ==============');
+    
+    
     const fetchData = async () => {
         try {
+            console.log('========== fetch data running ==========');
             const response = await axiosInstance({
                 method: "GET",
                 url: url,
@@ -24,7 +28,7 @@ export const useFetch = (url) => {
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [url]);
 
     return [data, isLoading, error];
 };

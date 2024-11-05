@@ -17,6 +17,22 @@ export const getCart = async (req, res, next) => {
     }
 };
 
+export const getCartItems = async (req, res, next) => {
+    try {
+        const { user } = req;
+        const cart = await Cart.findOne({ userId: user.id }).populate("courses.courseId");
+
+        if (!cart) {
+            return res.status(404).json({ message: "cart is empty" });
+        }
+
+        res.json({ message: "cart details fetched", data: cart.courses });
+    } catch (error) {
+        console.log(error);
+        res.status(error.statusCode || 500).json(error.message || "Internal server error");
+    }
+};
+
 export const addCourseToCart = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -68,8 +84,10 @@ export const removeCourseFromCart = async (req, res) => {
             return res.status(404).json({ message: "Cart not found" });
         }
 
+        console.log("courseId====", courseId, typeof courseId);
+
         // Remove the course from the cart
-        cart.courses = cart.courses.filter((item) => !item.courseId.equals(courseId));
+        cart.courses = cart.courses.filter((item) => !item?.courseId == courseId);
 
         // Recalculate the total price
         cart.calculateTotalPrice();

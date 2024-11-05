@@ -70,6 +70,14 @@ export const router = createBrowserRouter([
                         path: "orders",
                         element: <h2>orders</h2>,
                     },
+                    {
+                        path:"payment/success",
+                        element: <h2>Payment success</h2>
+                    },
+                    {
+                        path:"payment/cancel",
+                        element: <h2>Payment cancelled</h2>
+                    }
                 ],
             },
         ],
